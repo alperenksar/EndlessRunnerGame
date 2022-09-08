@@ -12,7 +12,11 @@ namespace RunnerGame.Controller
         [Range(1f, 10f)]
         [SerializeField] float _enemyMoveSpeed = 5f;
 
-        public float EnemyMoveSpeed => _enemyMoveSpeed; 
+        [SerializeField] float _maxLifeTime = 10f;
+
+        public float EnemyMoveSpeed => _enemyMoveSpeed;
+
+        float CurrentLifeTime = 0f;
 
 
 
@@ -21,10 +25,27 @@ namespace RunnerGame.Controller
             verticalMovement = new VerticalMovement(this);
         }
 
+        private void Update()
+        {
+            CurrentLifeTime += Time.deltaTime;
+
+            if (CurrentLifeTime > _maxLifeTime)
+            {
+                CurrentLifeTime = 0f;
+                KillYourSelf();
+            }
+        }
+
         private void FixedUpdate()
         {
             verticalMovement.FixedTick();
         }
+
+        void KillYourSelf()
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
 }
