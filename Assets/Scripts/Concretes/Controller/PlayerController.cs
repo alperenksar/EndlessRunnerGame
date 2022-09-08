@@ -11,7 +11,7 @@ namespace RunnerGame.Controller
     public class PlayerController : MonoBehaviour
     {
         [Header("HorizontalMover")]
-        [SerializeField] float _moveBound = 4.5f;
+          [SerializeField] float _moveBound = 4.5f;
           [SerializeField] float _moveSpeed = 10f;
           HorizontalMovements _horizontalMovements;
 
