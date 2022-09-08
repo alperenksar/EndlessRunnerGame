@@ -7,12 +7,21 @@
             "actions": [
                 {
                     "name": "HorizontalMove",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "6e163a2f-8a61-4c80-ab1b-7ff2688ad2d4",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "PassThrough",
+                    "id": "f9343e8c-b472-4e1d-a474-02467d0d61aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap(duration=0.01,pressPoint=1)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -48,6 +57,17 @@
                     "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dbcd925c-b546-4545-9002-b6568675ad5c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

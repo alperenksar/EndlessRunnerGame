@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RunnerGame.Movements;
+using RunnerGame.Abstracts.Input;
+using RunnerGame.Input;
+using UnityEngine.InputSystem;
 
 namespace RunnerGame.Controller
 {
     public class PlayerController : MonoBehaviour
     {
         [Header("HorizontalMover")]
-          [SerializeField] float _horizontalDirection = 0f;
           [SerializeField] float _moveSpeed = 10f;
           HorizontalMovements _horizontalMovements;
 
         [Header("JumpMover")]
           [SerializeField] float _jumpForce = 10f;
-          [SerializeField] bool _isJump;
           JumpMovements _jumpMovements;
+
+        IInputReader _input;
+
+        float _horizontal;
+        bool _isJump;
         
 
 
@@ -23,11 +29,22 @@ namespace RunnerGame.Controller
         {
             _horizontalMovements = new HorizontalMovements(this);
             _jumpMovements = new JumpMovements(this);
+            _input = new InputReader(GetComponent<PlayerInput>());
+        }
+
+        private void Update()
+        {
+            _horizontal = _input.Horizontal;
+
+            if (_input.IsJump)
+            {
+                _isJump = true;
+            }
         }
 
         private void FixedUpdate()
         {
-            _horizontalMovements.TickFixed(_horizontalDirection, _moveSpeed);
+            _horizontalMovements.TickFixed(_horizontal, _moveSpeed);
 
             if (_isJump)
             {
@@ -35,9 +52,9 @@ namespace RunnerGame.Controller
             }
 
             _isJump = false;
-
-
         }
+
+      
 
 
     }

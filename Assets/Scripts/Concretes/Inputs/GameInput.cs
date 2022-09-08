@@ -31,12 +31,21 @@ namespace RunnerGame.Input
             ""actions"": [
                 {
                     ""name"": ""HorizontalMove"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""6e163a2f-8a61-4c80-ab1b-7ff2688ad2d4"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f9343e8c-b472-4e1d-a474-02467d0d61aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap(duration=0.01,pressPoint=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -72,6 +81,17 @@ namespace RunnerGame.Input
                     ""action"": ""HorizontalMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbcd925c-b546-4545-9002-b6568675ad5c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -81,6 +101,7 @@ namespace RunnerGame.Input
             // PlayerOnFoot
             m_PlayerOnFoot = asset.FindActionMap("PlayerOnFoot", throwIfNotFound: true);
             m_PlayerOnFoot_HorizontalMove = m_PlayerOnFoot.FindAction("HorizontalMove", throwIfNotFound: true);
+            m_PlayerOnFoot_Jump = m_PlayerOnFoot.FindAction("Jump", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -141,11 +162,13 @@ namespace RunnerGame.Input
         private readonly InputActionMap m_PlayerOnFoot;
         private IPlayerOnFootActions m_PlayerOnFootActionsCallbackInterface;
         private readonly InputAction m_PlayerOnFoot_HorizontalMove;
+        private readonly InputAction m_PlayerOnFoot_Jump;
         public struct PlayerOnFootActions
         {
             private @GameInput m_Wrapper;
             public PlayerOnFootActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @HorizontalMove => m_Wrapper.m_PlayerOnFoot_HorizontalMove;
+            public InputAction @Jump => m_Wrapper.m_PlayerOnFoot_Jump;
             public InputActionMap Get() { return m_Wrapper.m_PlayerOnFoot; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -158,6 +181,9 @@ namespace RunnerGame.Input
                     @HorizontalMove.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnHorizontalMove;
                     @HorizontalMove.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnHorizontalMove;
                     @HorizontalMove.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnHorizontalMove;
+                    @Jump.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnJump;
                 }
                 m_Wrapper.m_PlayerOnFootActionsCallbackInterface = instance;
                 if (instance != null)
@@ -165,6 +191,9 @@ namespace RunnerGame.Input
                     @HorizontalMove.started += instance.OnHorizontalMove;
                     @HorizontalMove.performed += instance.OnHorizontalMove;
                     @HorizontalMove.canceled += instance.OnHorizontalMove;
+                    @Jump.started += instance.OnJump;
+                    @Jump.performed += instance.OnJump;
+                    @Jump.canceled += instance.OnJump;
                 }
             }
         }
@@ -172,6 +201,7 @@ namespace RunnerGame.Input
         public interface IPlayerOnFootActions
         {
             void OnHorizontalMove(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
         }
     }
 }

@@ -11,6 +11,8 @@ namespace RunnerGame.Movements
     { 
         private Rigidbody Rigidbody;
 
+        public bool CanJump => Rigidbody.velocity.y != 0f;
+
         public JumpMovements(PlayerController playerController)
         {
             Rigidbody=playerController.GetComponent<Rigidbody>();
@@ -18,7 +20,7 @@ namespace RunnerGame.Movements
 
         public void TickFixed(float Jumpforce)
         {
-            if (Rigidbody.velocity.y != 0) return;
+            if (CanJump) return;
 
             Rigidbody.velocity = Vector3.zero;
             Rigidbody.AddForce(Vector3.up * Jumpforce * Time.deltaTime);
