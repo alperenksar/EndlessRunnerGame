@@ -5,6 +5,7 @@ using RunnerGame.Movements;
 using RunnerGame.Abstracts.Input;
 using RunnerGame.Input;
 using UnityEngine.InputSystem;
+using RunnerGame.Managers;
 
 namespace RunnerGame.Controller
 {
@@ -24,6 +25,7 @@ namespace RunnerGame.Controller
 
         float _horizontal;
         bool _isJump;
+        bool _isDead = false;
 
         public float MoveSpeed => _moveSpeed;
 
@@ -40,6 +42,8 @@ namespace RunnerGame.Controller
 
         private void Update()
         {
+            if (_isDead) return;
+
             _horizontal = _input.Horizontal;
 
             if (_input.IsJump)
@@ -60,7 +64,16 @@ namespace RunnerGame.Controller
             _isJump = false;
         }
 
-      
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                _isDead = true;
+                GameManager.Instance.StopGame();
+            }
+        }
+
+
 
 
     }
