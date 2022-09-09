@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using RunnerGame.Abstracts.Utilities;
 namespace RunnerGame.Managers
@@ -16,8 +17,14 @@ namespace RunnerGame.Managers
             Time.timeScale = 0f;
         }
 
-        public void LoadScene()
+        public void LoadScene(string sceneName)
         {
+            StartCoroutine(LoadSceneAsync(sceneName));
+        }
+
+        IEnumerator LoadSceneAsync(string sceneName)
+        {
+            yield return SceneManager.LoadSceneAsync(sceneName);
 
         }
 
