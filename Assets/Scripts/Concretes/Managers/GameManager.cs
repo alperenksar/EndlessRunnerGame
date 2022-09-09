@@ -24,8 +24,13 @@ namespace RunnerGame.Managers
 
         IEnumerator LoadSceneAsync(string sceneName)
         {
+            Time.timeScale = 1f;
             yield return SceneManager.LoadSceneAsync(sceneName);
+        }
 
+        public void TurnMenu()
+        {
+            SceneManager.LoadScene(0);
         }
 
         public void ExitGame()
