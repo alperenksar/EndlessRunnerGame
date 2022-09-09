@@ -64,9 +64,11 @@ namespace RunnerGame.Controller
             _isJump = false;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.collider.CompareTag("Enemy"))
+            EnemyController enemy = other.GetComponent<EnemyController>();
+
+            if (enemy != null)
             {
                 _isDead = true;
                 GameManager.Instance.StopGame();

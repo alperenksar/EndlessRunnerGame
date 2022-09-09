@@ -8,9 +8,9 @@ namespace RunnerGame.Controller
     {
         [SerializeField] EnemyController _enemyPrefab;
 
-        [Range(0.1f, 5.00f)] float _min = 0.1f;
+        [Range(0.1f, 2.00f)] float _min = 0.1f;
 
-        [Range(6.0f, 10.0f)] float _max = 10f;
+        [Range(2.0f, 6.0f)] float _max = 10f;
 
         float _maxSpawnTime ;
         float _currentSpawnTime = 0f;

@@ -10,7 +10,7 @@ namespace RunnerGame.Controller
         VerticalMovement verticalMovement;
 
         [Range(1f, 10f)]
-        [SerializeField] float _enemyMoveSpeed = 5f;
+        [SerializeField] float _enemyMoveSpeed = 10f;
 
         [SerializeField] float _maxLifeTime = 10f;
 
