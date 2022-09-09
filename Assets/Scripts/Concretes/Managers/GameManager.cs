@@ -16,6 +16,17 @@ namespace RunnerGame.Managers
             Time.timeScale = 0f;
         }
 
+        public void LoadScene()
+        {
+
+        }
+
+        public void ExitGame()
+        {
+            Debug.Log("Exit process is running");
+            Application.Quit();
+        }
+
     }
 
 }
