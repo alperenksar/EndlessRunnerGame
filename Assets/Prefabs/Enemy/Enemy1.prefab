@@ -64,8 +64,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8629755797626381260, guid: 967fbc28fad52cb429c8134e006ab688, type: 3}
+      propertyPath: _maxLifeTime
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8629755797626381260, guid: 967fbc28fad52cb429c8134e006ab688, type: 3}
       propertyPath: _enemyMoveSpeed
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 967fbc28fad52cb429c8134e006ab688, type: 3}

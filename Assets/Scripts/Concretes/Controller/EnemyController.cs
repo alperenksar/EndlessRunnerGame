@@ -1,3 +1,4 @@
+using RunnerGame.Managers;
 using RunnerGame.Movements;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace RunnerGame.Controller
     {
         VerticalMovement verticalMovement;
 
-        [Range(1f, 10f)]
-        [SerializeField] float _enemyMoveSpeed = 10f;
+        [Range(1f, 20f)]
+        [SerializeField] float _enemyMoveSpeed = 20f;
 
         [SerializeField] float _maxLifeTime = 10f;
 
@@ -43,7 +44,7 @@ namespace RunnerGame.Controller
 
         void KillYourSelf()
         {
-            Destroy(this.gameObject);
+            EnemyManager.Instance.SetPool(this);
         }
 
     }
