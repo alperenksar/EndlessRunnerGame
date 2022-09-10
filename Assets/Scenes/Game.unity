@@ -439,7 +439,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deaef65f4f3c4554a8f7afb9bc08533b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 8401875647850492192, guid: 146a07917df9a834eb5e4b421c6de6d8, type: 3}
+  _enemyPrefabs:
+  - {fileID: 8401875647850492192, guid: 146a07917df9a834eb5e4b421c6de6d8, type: 3}
+  - {fileID: 199384210960038102, guid: 8def4a4ef25c8644d8abd0e9a1088761, type: 3}
+  - {fileID: 2018861734481410947, guid: d139387099b90a7438fcf69bc195bbf6, type: 3}
+  - {fileID: 2292452955958060828, guid: 448f643ece57f91418b0aca94d22437c, type: 3}
 --- !u!1 &680246654
 GameObject:
   m_ObjectHideFlags: 0

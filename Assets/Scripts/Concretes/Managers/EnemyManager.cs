@@ -4,12 +4,13 @@ using UnityEngine;
 using RunnerGame.Controller;
 using RunnerGame.Abstracts.Utilities;
 using System;
+using Random = UnityEngine.Random;
 
 namespace RunnerGame.Managers
 {
     public class EnemyManager : SingletonBehaviour<EnemyManager>
     {
-        [SerializeField] EnemyController _enemyPrefab;
+        [SerializeField] EnemyController[] _enemyPrefabs;
 
         Queue<EnemyController> _enemies=new Queue<EnemyController> ();
 
@@ -27,7 +28,7 @@ namespace RunnerGame.Managers
         {
             for (int i = 0; i < 10; i++)
             {
-                EnemyController newEnemy = Instantiate(_enemyPrefab);
+                EnemyController newEnemy = Instantiate(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length-1)]);
                 newEnemy.gameObject.SetActive(false);
                 newEnemy.transform.parent = this.transform;
 
@@ -51,6 +52,8 @@ namespace RunnerGame.Managers
 
             return _enemies.Dequeue();
         }
+
+      
     }
 
 }

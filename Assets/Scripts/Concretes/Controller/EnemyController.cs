@@ -3,15 +3,16 @@ using RunnerGame.Movements;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RunnerGame.Abstracts.Controllers;
 
 namespace RunnerGame.Controller
 {
-    public class EnemyController : MonoBehaviour
+    public class EnemyController : MonoBehaviour , IEntityController
     {
         VerticalMovement verticalMovement;
 
-        [Range(1f, 20f)]
-        [SerializeField] float _enemyMoveSpeed = 20f;
+        [Range(1f, 30f)]
+        [SerializeField] float _enemyMoveSpeed = 30f;
 
         [SerializeField] float _maxLifeTime = 10f;
 

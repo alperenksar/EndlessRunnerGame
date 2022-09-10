@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using RunnerGame.Movements;
 using RunnerGame.Abstracts.Input;
+using RunnerGame.Abstracts.Controllers;
 using RunnerGame.Input;
 using UnityEngine.InputSystem;
 using RunnerGame.Managers;
 
+
 namespace RunnerGame.Controller
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour ,IEntityController
     {
         [Header("HorizontalMover")]
           [SerializeField] float _moveBound = 4.5f;
@@ -66,9 +68,11 @@ namespace RunnerGame.Controller
 
         private void OnTriggerEnter(Collider other)
         {
-            EnemyController enemy = other.GetComponent<EnemyController>();
+            //EnemyController enemy = other.GetComponent<EnemyController>();
 
-            if (enemy != null)
+            IEntityController _enemy = other.GetComponent<IEntityController>();
+
+            if (_enemy != null)
             {
                 _isDead = true;
                 GameManager.Instance.StopGame();
